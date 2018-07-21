@@ -4,7 +4,8 @@ public class NavManager {
 
     public static NavManager shared = new NavManager();
 //    PPMInput input = new PPMInput();
-    Scanner scanner = null;
+    private Scanner scanner = null;
+    private Scanner kbScanner = null;
 
     private NavManager() {
 
@@ -20,9 +21,11 @@ public class NavManager {
         System.out.println("3. Display an image");
         System.out.println("4. Exit the program");
 
-        switch (kbScanner().nextInt()) {
+        switch (getKBScanner().nextInt()) {
             case 1: break;
-            case 2: break;
+            case 2:
+                readFile();
+                break;
             case 3: break;
             case 4:
                 System.exit(0);
@@ -35,7 +38,19 @@ public class NavManager {
 
     }
 
-    private Scanner kbScanner() {
-        return new Scanner(System.in);
+    private Scanner getKBScanner() {
+        if (kbScanner != null) {
+            return kbScanner;
+        }
+
+        Scanner localScanner = new Scanner(System.in);
+
+        return localScanner;
+    }
+
+    public void readFile() {
+        System.out.println("Please enter a filename");
+        String fileName = getKBScanner().nextLine() + ".ppm";
+        System.out.println(fileName);
     }
 }
