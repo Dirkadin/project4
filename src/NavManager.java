@@ -5,7 +5,7 @@ public class NavManager {
 
     public static NavManager shared = new NavManager();
 //    PPMInput input = new PPMInput();
-    private Scanner scanner = null;
+//    private Scanner scanner = null;
     private Scanner kbScanner = null;
 
     /**
@@ -26,9 +26,6 @@ public class NavManager {
                 break;
             case 3: break;
             case 4:
-                if (scanner != null) {
-                    scanner.close();
-                }
                 System.exit(0);
                 break;
             default:
@@ -57,10 +54,10 @@ public class NavManager {
                 NavManager.shared.startProgram();
                 break;
             case 7:
-                if (scanner != null) {
-                    scanner.close();
-                }
                 System.exit(0);
+            default:
+                System.out.println("Please enter an Integer 1 through 4!");
+                NavManager.shared.manipulationMenu(fileName);
         }
     }
 
@@ -71,9 +68,7 @@ public class NavManager {
         if (kbScanner != null) {
             return kbScanner;
         }
-
         Scanner localScanner = new Scanner(System.in);
-
         return localScanner;
     }
 
